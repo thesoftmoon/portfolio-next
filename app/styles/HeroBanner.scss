@@ -1,0 +1,9 @@
+.hero-banner {
+    position:relative;
+    .main-img{
+        height: 70vh;
+        width: 100%;
+        object-fit: cover;
+        background-repeat: no-repeat;
+    }
+}
