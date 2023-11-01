@@ -2,7 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-.test {
-  color: white;
-  background-color: red;
+@font-face {
+  font-family: 'Wonder Season';
+  src: url(/app/assets/wonder-season.otf) format('otf');
+}
+
+.service-container {
+  margin: 20px 40px;
+}
+.service-text {
+  padding: 20px 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.title {
+  font-family: 'Wonder Season';
+  font-size: 42px;
+  margin: 80px 0px 50px 50px;
 }
