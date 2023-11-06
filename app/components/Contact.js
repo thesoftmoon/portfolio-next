@@ -3,7 +3,7 @@ import React from 'react'
 function Contact() {
     return (
         <div>
-            <div className='px-5 bg-zinc-700 pb-20'>
+            <div className='px-5 bg-zinc-700 pb-20' id='contact'>
                 <h1 className='title text-white'>Contacto</h1>
                 <div className='info-container'>
                     <div className="info-item">

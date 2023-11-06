@@ -1,0 +1,33 @@
+@import "MediaQueries";
+
+.event-container {
+  position: relative;
+  height: 350px;
+  .img-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    &:hover img{
+        filter: grayscale(0%);
+    }
+    img {
+      width: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      -o-object-position: center;
+      object-position: center;
+      height: 350px;
+      filter: grayscale(
+        100%
+      ); /* Aplicar desaturación en blanco y negro inicialmente */
+      transition: filter 0.3s;
+    }
+  }
+  .txt-container {
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    bottom: 0;
+    padding: 10px;
+  }
+}

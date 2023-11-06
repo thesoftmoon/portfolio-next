@@ -2,7 +2,7 @@ import React from 'react'
 
 function WoAre() {
     return (
-        <div className='my-20'>
+        <div className='my-20' id='woare'>
             <div className='mx-5'>
                 <h1 className='title'>Quienes somos</h1>
             </div>
