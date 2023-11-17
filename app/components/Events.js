@@ -1,35 +1,28 @@
 'use client'
-
 import React, { useEffect, useState } from 'react';
-import { db } from '@/firebase';
-import { collection, getDocs } from 'firebase/firestore';
 import Image from 'next/image';
 import '../styles/Events.scss';
+import getCollectionData from '@/firebase/firestore/getCollectionData'
 
-async function fetchDataFromFirestore() {
-    const querySnapshot = await getDocs(collection(db, 'events'))
 
-    const data = [];
-
-    querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() })
-    });
-    return data;
-}
 
 function Events() {
 
     const [eventsData, setEventsData] = useState([]);
+    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        async function fetchData() {
-            const data = await fetchDataFromFirestore();
-            setEventsData(data);
-            console.log(data)
-
-        }
+    useEffect(()=>{
+        const fetchData = async ()=>{
+            const  {result, error} = await getCollectionData('events');
+            if(error){
+                setError(error)
+            }
+            else {
+                setEventsData(result)
+            }
+        };
         fetchData();
-    }, []);
+    },[])
 
     return (
         <div id='events'>
