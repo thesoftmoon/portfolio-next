@@ -2,9 +2,9 @@ import React from 'react'
 
 function Navbar() {
     return (
-            <div class="bg-white">
-                <div class="container-xl flex justify-between items-center py-4 px-10 text-zinc-800">
-                    <a class="text-2xl hover:text-cyan-400 transition-colors" href="/">
+            <div className="bg-white">
+                <div className="container-xl flex justify-between items-center py-4 px-10 text-zinc-800">
+                    <a className="text-2xl hover:text-cyan-400 transition-colors" href="/">
                         <svg width="180" height="40" viewBox="0 0 334 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M46.4916 13.6463C46.4916 18.7972 43.6125 27.3951 24.9653 27.3951C17.4717 27.3951 15.4287 36.2691 15.2236 38.0991V43.668C15.5155 52.8575 16.9117 56.5333 18.1264 57.9768C19.0414 59.0575 18.3631 60.8559 16.9511 60.8559H1.59319C0.18124 60.8559 -0.489239 59.0575 0.41788 57.9768C1.63263 56.5333 3.02092 52.8575 3.32066 43.668V18.3239C3.02092 9.13437 1.63263 5.45067 0.41788 4.01506C-0.497127 2.92651 0.173352 1.12805 1.59319 1.12805C2.25578 1.12805 24.9653 1.12805 24.9653 1.12805C43.7782 1.12805 46.4916 8.70841 46.4916 13.6463ZM34.5887 14.2616C34.5887 6.8784 31.3625 2.35858 24.9732 2.35858H15.2315V33.9263C15.4524 32.7116 18.505 26.1645 24.9732 26.1645C31.4414 26.1645 34.5887 20.5641 34.5887 14.2616Z" fill="#333333" />
                             <path d="M46.2708 57.7165C47.8642 55.3186 48.6924 52.3527 48.9685 43.668V18.316C48.6924 9.63131 47.8642 6.65754 46.2708 4.26747C45.3873 2.9344 46.2234 1.12805 47.8168 1.12805H62.0231C63.6165 1.12805 64.4526 2.94229 63.5691 4.26747C61.9758 6.66542 61.1475 9.63131 60.8715 18.316V43.668C61.1475 52.3527 61.9758 55.3265 63.5691 57.7165C64.4526 59.0496 63.6165 60.8559 62.0231 60.8559H47.8168C46.2234 60.8559 45.3873 59.0417 46.2708 57.7165Z" fill="#333333" />
@@ -33,10 +33,10 @@ function Navbar() {
                         </svg>
 
                     </a>
-                    <ul class="flex items-center gap-5">
-                        <li><a class="hover:text-teal-500 transition-colors" href="#woare">¿Quienes somos?</a></li>
-                        <li><a class="hover:text-teal-500 transition-colors" href="#events">Eventos</a></li>
-                        <li><a class="hover:text-teal-500 transition-colors" href="#contact">Contáctanos</a></li>
+                    <ul className="flex items-center gap-5">
+                        <li><a className="hover:text-teal-500 transition-colors" href="#woare">¿Quienes somos?</a></li>
+                        <li><a className="hover:text-teal-500 transition-colors" href="#events">Eventos</a></li>
+                        <li><a className="hover:text-teal-500 transition-colors" href="#contact">Contáctanos</a></li>
                     </ul>
                 </div>
             </div>

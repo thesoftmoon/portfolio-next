@@ -24,6 +24,7 @@ function Events() {
         fetchData();
     },[])
 
+
     return (
         <div id='events'>
             <div className='px-5 bg-zinc-700'>

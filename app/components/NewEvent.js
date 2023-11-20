@@ -1,53 +1,62 @@
 'use client'
 
-import React from 'react';
-import { db, imageDb } from '@/firebase';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-import { useState } from 'react';
-import { v4 } from 'uuid';
-
-async function addDataToFirestore(name, image, description) {
-    try {
-        const docRef = await addDoc(collection(db, 'events'), {
-            name: name,
-            image: image,
-            description: description,
-        });
-        console.log('Document written with ID: ', docRef.id)
-        return true;
-    } catch (error) {
-        console.error('Error adding document ', error);
-        return false;
-    }
-}
+import React, { useState } from 'react';
+import addData from '@/firebase/firestore/addData';
+import addImage from '@/firebase/firestore/addImage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function NewEvent() {
     const [name, setName] = useState('');
-    const [image, setImage] = useState('');
     const [description, setDescription] = useState('');
+    const [file, setFile] = useState(null);
 
-    const handleUpload = (e) => {
-        console.log(e.target.files[0]);
-        const img = ref(imageDb, `imgs/${v4()}`);
-        uploadBytes(img, e.target.files[0]).then(data => {
-            console.log(data, 'img');
-            getDownloadURL(data.ref).then(val => {
-                setImage(val);
-            })
-        })
+    const handleFileChange = (e) => {
+        const selectedImage = e.target.files[0];
+        setFile(selectedImage);
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const added = await addDataToFirestore(name, image, description);
-        if (added) {
-            setName('');
-            setImage('');
-            setDescription('');
-            alert('data added to firestore');
+        const notification = toast.loading("Subiendo datos...")
+        // Better to store in local variable than state...
+        let imageUrl = '';
+
+        if (file) {
+            try {
+            
+                const { result, error } = await addImage('events', file)
+                if (error) {
+                    console.log('error uploading the image: ' + error)
+                } else {
+                    console.log('Image uploaded, the url is: ' + result);
+                    imageUrl = result;
+                }
+            } catch (error) {
+                console.log('error uploading the image: ' + error)
+            }
+        }
+
+        const data = {
+            name: name,
+            image: imageUrl,
+            description: description,
+        }
+
+        const { result, error } = await addData('events', data)
+
+        if (error) {
+            console.log('Error:' + error)
+        }
+        if (result) {
+            toast.update(notification, { render: "Datos enviados", type: "success", isLoading: false, autoClose: 1000 });
+            console.log('Data stored')
+            setName('')
+            setDescription('')
+            setFile(null)
         }
     }
+
     return (
         <main className="flex min-h-screen flex-col items-center p-5">
             <h1 className="text-5xl font-bold m-10">
@@ -73,7 +82,8 @@ function NewEvent() {
                     <input type="file"
                         id='image'
                         className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
-                        onChange={(e) => handleUpload(e)} />
+                        onChange={handleFileChange}
+                    />
                 </div>
 
                 <div className="mb-4">
@@ -94,6 +104,8 @@ function NewEvent() {
                     </button>
                 </div>
             </form>
+
+            <ToastContainer />
         </main>
     )
 }
