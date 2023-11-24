@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import addData from '@/firebase/firestore/addData';
 import addImage from '@/firebase/firestore/addImage';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function NewEvent() {
     const [name, setName] = useState('');
@@ -24,7 +23,6 @@ function NewEvent() {
 
         if (file) {
             try {
-            
                 const { result, error } = await addImage('events', file)
                 if (error) {
                     console.log('error uploading the image: ' + error)

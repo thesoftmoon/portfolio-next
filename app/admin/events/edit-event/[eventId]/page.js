@@ -3,11 +3,20 @@ import React, { useState, useEffect } from 'react'
 import editData from '@/firebase/firestore/editData';
 import getData from '@/firebase/firestore/getData';
 import Image from 'next/image';
+import { ToastContainer, toast } from 'react-toastify';
+import addImage from '@/firebase/firestore/addImage';
 
 function Page({ params }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [eventData, setEventData] = useState();
+  const [file, setFile] = useState(null);
+  const [updated, setUpdated] = useState(false);
+
+  const handleFileChange = (e) => {
+    const selectedImage = e.target.files[0];
+    setFile(selectedImage)
+  }
 
   // here useEffect for prevent the data loop
   useEffect(() => {
@@ -20,11 +29,12 @@ function Page({ params }) {
         const data = result.data();
         console.log('data fetch' + data)
         setEventData(data)
+        setUpdated(false);
       }
     };
 
     fetchData();
-  }, [params.eventId])
+  }, [params.eventId, updated])
 
   // here useEffect to console.log the updated state data
   useEffect(() => {
@@ -33,8 +43,27 @@ function Page({ params }) {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    const notification = toast.loading("Subiendo datos...")
+    // Better to store in local variable than state...
+    let imageUrl = '';
+
+
+    try {
+      const { result, error } = await addImage('events', file)
+      if (error) {
+        console.log('error uploading the image: ' + error)
+      } else {
+        console.log('Image uploaded, the url is: ' + result);
+        imageUrl = result;
+      }
+    } catch (error) {
+      console.log('error uploading the image: ' + error)
+    }
+
+
     const newData = {
       name: name,
+      image: imageUrl,
       description: description,
     };
 
@@ -47,9 +76,13 @@ function Page({ params }) {
     }
     else {
       console.log('Datos actualizados correctamente');
+      toast.update(notification, { render: "Datos enviados", type: "success", isLoading: false, autoClose: 1000 });
+      console.log('Data Updated')
     }
     setName('');
     setDescription('');
+    setFile(null);
+    setUpdated(true);
   };
 
   return (
@@ -93,12 +126,25 @@ function Page({ params }) {
         )
         }
 
+        <div className="mb-4">
+          <label htmlFor="image" className='block text-gray-700 font-bold mb-2'>
+            Imagen:
+          </label>
+          <input type="file"
+            id='image'
+            className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
+            onChange={handleFileChange}
+          />
+        </div>
+
         <div className="text-center">
           <button type='submit' className="bg-teal-500 hover:bg-teal-600 transition-colors text-white font-bold py-2 px-4 rounded-lg">
             Subir evento
           </button>
         </div>
       </form>
+      <ToastContainer />
+
     </main>
   );
 }
