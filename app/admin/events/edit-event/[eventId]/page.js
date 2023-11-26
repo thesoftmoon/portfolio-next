@@ -47,7 +47,6 @@ function Page({ params }) {
     // Better to store in local variable than state...
     let imageUrl = '';
 
-
     try {
       const { result, error } = await addImage('events', file)
       if (error) {

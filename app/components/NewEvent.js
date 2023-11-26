@@ -1,14 +1,23 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import addData from '@/firebase/firestore/addData';
 import addImage from '@/firebase/firestore/addImage';
 import { ToastContainer, toast } from 'react-toastify';
+import { useAuthContext } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 function NewEvent() {
+
+    const {user} = useAuthContext();
+    const router = useRouter();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [file, setFile] = useState(null);
+
+    useEffect(() => {
+        if (user == null) router.push("/sign-in")
+    }, [user])
 
     const handleFileChange = (e) => {
         const selectedImage = e.target.files[0];
