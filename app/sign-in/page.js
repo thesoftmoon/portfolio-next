@@ -23,7 +23,7 @@ function Page() {
     return (
         <div className="container mx-auto">
             <div className="flex flex-wrap justify-center content-center login-container">
-                <div className="w-full md:w-2/4 login-card">
+                <div className="w-full md:w-2/5 login-card">
                     <h1 className="mb-10 text-4xl font-semibold text-gray-900 text-center">Inicia sesión</h1>
                     <form onSubmit={handleForm} className="form">
                         <label htmlFor="email">
