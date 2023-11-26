@@ -11,13 +11,14 @@ function NewEvent() {
 
     const {user} = useAuthContext();
     const router = useRouter();
+    useEffect(() => {
+        if (user == null) router.push("/sign-in")
+    }, [user])
+
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [file, setFile] = useState(null);
 
-    useEffect(() => {
-        if (user == null) router.push("/sign-in")
-    }, [user])
 
     const handleFileChange = (e) => {
         const selectedImage = e.target.files[0];

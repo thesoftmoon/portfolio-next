@@ -5,8 +5,17 @@ import getData from '@/firebase/firestore/getData';
 import Image from 'next/image';
 import { ToastContainer, toast } from 'react-toastify';
 import addImage from '@/firebase/firestore/addImage';
+import { useRouter } from 'next/navigation';
+import { useAuthContext } from '@/context/AuthContext';
 
 function Page({ params }) {
+
+  const {user} = useAuthContext();
+    const router = useRouter();
+    useEffect(() => {
+        if (user == null) router.push("/sign-in")
+    }, [user])
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [eventData, setEventData] = useState();
