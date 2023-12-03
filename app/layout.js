@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContextProvider } from '@/context/AuthContext';
+import 'material-symbols';
 
 
 const inter = Inter({ subsets: ['latin'] })

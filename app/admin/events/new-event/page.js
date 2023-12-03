@@ -1,5 +1,5 @@
 import React from 'react'
-import NewEvent from '../../components/NewEvent'
+import NewEvent from '@/app/components/NewEvent'
 
 export default function page() {
   return (

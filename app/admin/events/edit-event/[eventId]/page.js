@@ -56,29 +56,28 @@ function Page({ params }) {
     // Better to store in local variable than state...
     let imageUrl = '';
 
-    try {
-      const { result, error } = await addImage('events', file)
-      if (error) {
+    if (file){
+      try {
+        const { result, error } = await addImage('events', file)
+        if (error) {
+          console.log('error uploading the image: ' + error)
+        } else {
+          console.log('Image uploaded, the url is: ' + result);
+          imageUrl = result;
+        }
+      } catch (error) {
         console.log('error uploading the image: ' + error)
-      } else {
-        console.log('Image uploaded, the url is: ' + result);
-        imageUrl = result;
       }
-    } catch (error) {
-      console.log('error uploading the image: ' + error)
     }
 
-
     const newData = {
-      name: name,
-      image: imageUrl,
-      description: description,
+      // add a fiel only if they exist, this code is named "short circuit evaluation" and the ... are the spread operator, they add the data to the new object
+      ...(name && { name }),
+      ...(imageUrl && { image: imageUrl }),
+      ...(description && { description }),
     };
-
     console.log('New Data:', newData)
-
     const { result, error } = await editData('events', `${params.eventId}`, newData);
-
     if (error) {
       console.error('Error al actualizar datos:', error);
     }
