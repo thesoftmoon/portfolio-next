@@ -1,9 +1,15 @@
 .hero-banner {
-    position:relative;
-    .main-img{
-        height: 90vh;
-        width: 100%;
-        object-fit: cover;
-        background-repeat: no-repeat;
-    }
+  position: relative;
+  .main-img {
+    height: 90vh;
+    width: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+  }
+  .txt {
+    position: absolute;
+    bottom: 30%;
+    left: 30px;
+    padding: 10px;
+  }
 }
