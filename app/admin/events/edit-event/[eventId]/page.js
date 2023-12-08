@@ -10,11 +10,11 @@ import { useAuthContext } from '@/context/AuthContext';
 
 function Page({ params }) {
 
-  const {user} = useAuthContext();
-    const router = useRouter();
-    useEffect(() => {
-        if (user == null) router.push("/sign-in")
-    }, [user])
+  const { user } = useAuthContext();
+  const router = useRouter();
+  useEffect(() => {
+    if (user == null) router.push("/sign-in")
+  }, [user])
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -56,7 +56,7 @@ function Page({ params }) {
     // Better to store in local variable than state...
     let imageUrl = '';
 
-    if (file){
+    if (file) {
       try {
         const { result, error } = await addImage('events', file)
         if (error) {

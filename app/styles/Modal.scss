@@ -15,10 +15,18 @@
     min-height: 300px;
     border-radius: 20px;
     padding: 30px;
-    .modal-content{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .modal-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .close-btn {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      span {
+        color: #000;
+      }
     }
   }
 }
