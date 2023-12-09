@@ -16,6 +16,7 @@ function Modal(props) {
                     {props.children}
                 </div>
             </div>
+            <div className="background" onClick={props.onClose}></div>
         </div>
     )
 }

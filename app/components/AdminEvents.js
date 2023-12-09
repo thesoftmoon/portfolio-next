@@ -16,16 +16,19 @@ function AdminEvents() {
     const [modalData, setModalData] = useState(false);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [eventData, setEventData] = useState();
     const [file, setFile] = useState(null);
     const [updated, setUpdated] = useState(false);
 
-    const openModal = (data) => {
+    const openEditModal = (data) => {
         setModalData(data)
+
     }
 
-    const closeModal = () => {
+    const closeEditModal = () => {
         setModalData(null);
+        setName('');
+        setDescription('');
+        setFile(null);
     }
 
     useEffect(() => {
@@ -80,7 +83,7 @@ function AdminEvents() {
         }
         else {
             console.log('Datos actualizados correctamente');
-            closeModal();
+            closeEditModal();
             toast.update(notification, { render: "Datos enviados", type: "success", isLoading: false, autoClose: 1000 });
             console.log('Data Updated')
         }
@@ -91,11 +94,19 @@ function AdminEvents() {
 
     };
     return (
-        <div>
-            <div className='px-5 bg-zinc-700'>
+        <div className='h-screen bg-zinc-700'>
+            <div className='title-container'>
                 <h1 className='title text-white'>Eventos</h1>
+                <div>
+                    <button className='primary-btn' onClick={() => { console.log('pressed add btn') }}>
+                        <span className="material-symbols-outlined me-2">
+                            add_photo_alternate
+                        </span>
+                        Añadir
+                    </button>
+                </div>
             </div>
-            <div className='bg-zinc-700 flex flex-wrap'>
+            <div className=' flex flex-wrap'>
                 {eventsData.map((event) => (
                     <div key={event.id} className='text-white event-container w-full sm:w-1/2 md:w-1/3 p-4'>
                         <div className="img-container">
@@ -110,47 +121,53 @@ function AdminEvents() {
 
                         <div>
                             {/* <Link className='edit-btn' href={`/admin/events/edit-event/${event.id}`}>Editar Evento</Link> */}
-                            <button className='edit-btn' onClick={() => openModal(event)}>Abrir Modal</button>
+                            <button className='edit-btn' onClick={() => openEditModal(event)}>
+                                <span className="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </button>
                         </div>
+
+                        {/* Edit Modal */}
                         {modalData &&
-                            <Modal onClose={closeModal}>
-                                <main className="flex flex-col items-center p-5">
-                                    <div className='text-center mb-5'>
-                                        <h1 className="text-5xl font-bold text-black">
+                            <Modal onClose={closeEditModal}>
+                                <main className="flex flex-col items-center">
+                                    <div className='text-center mb-2'>
+                                        <h1 className="text-2xl font-bold text-black">
                                             Editar evento
                                         </h1>
-                                        <h2 className='text-black'>con id: {modalData.id}</h2>
+                                        {/* <h2 className='text-black'>con id: {modalData.id}</h2> */}
                                     </div>
                                     {/* <h1>aca va la form del evento : {params.eventId}</h1> */}
-                                    <form onSubmit={handleUpdate} className='w-80 mx-auto p-4 bg-white shadow-md rounded-lg'>
-                                        <div className="mb-4">
-                                            <label htmlFor="name" className='block text-gray-700 font-bold mb-2'>
-                                                Nombre:
+                                    <form onSubmit={handleUpdate} className='w-full md:w-full'>
+                                        <div className="mb-2">
+                                            <label htmlFor="name" className='block text-sm text-gray-700 font-bold mb-1'>
+                                                Nombre
                                             </label>
                                             <input type="text"
                                                 id='name'
-                                                className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
+                                                className='text-black w-full text-sm px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
                                                 value={name}
                                                 placeholder={modalData ? modalData.name : 'cargando...'}
                                                 onChange={(e) => setName(e.target.value)} />
                                         </div>
 
-                                        <div className="mb-4">
-                                            <label htmlFor="message" className='block text-gray-700 font-bold mb-2'>
-                                                Descripcion evento:
+                                        <div className="mb-2">
+                                            <label htmlFor="message" className='text-sm block text-gray-700 font-bold mb-1'>
+                                                Descripción
                                             </label>
                                             <textarea type="text"
                                                 id='message'
-                                                rows={5}
-                                                className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
+                                                rows={2}
+                                                className='text-sm text-black w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
                                                 value={description}
                                                 placeholder={modalData ? modalData.description : 'cargando...'}
                                                 onChange={(e) => setDescription(e.target.value)}></textarea>
                                         </div>
                                         {modalData && (
-                                            <div className='mb-4'>
-                                                <p className='block text-gray-700 font-bold mb-2'>Imagen actual</p>
-                                                <Image className='img-main' src={modalData.image} width={500}
+                                            <div className='mb-2'>
+                                                <p className='block text-gray-700 font-bold mb-2 text-sm'>Imagen actual</p>
+                                                <Image className='form-actual-img' src={modalData.image} width={500}
                                                     height={500}
                                                     alt={modalData.name} />
                                             </div>
@@ -158,18 +175,18 @@ function AdminEvents() {
                                         }
 
                                         <div className="mb-4">
-                                            <label htmlFor="image" className='block text-gray-700 font-bold mb-2'>
-                                                Imagen:
+                                            <label htmlFor="image" className='block text-gray-700 font-bold mb-2 text-sm'>
+                                                Imagen
                                             </label>
                                             <input type="file"
                                                 id='image'
-                                                className='w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
+                                                className='relative m-0 block w-full min-w-0 flex-auto rounded-lg border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary'
                                                 onChange={handleFileChange}
                                             />
                                         </div>
 
-                                        <div className="text-center">
-                                            <button type='submit' className="bg-teal-500 hover:bg-teal-600 transition-colors text-white font-bold py-2 px-4 rounded-lg">
+                                        <div className="flex justify-center">
+                                            <button type='submit' className="primary-btn">
                                                 Actualizar evento
                                             </button>
                                         </div>
@@ -179,6 +196,8 @@ function AdminEvents() {
                                 </main>
                             </Modal>
                         }
+                        {/* Edit Modal */}
+
                         <ToastContainer />
                     </div>
                 ))}

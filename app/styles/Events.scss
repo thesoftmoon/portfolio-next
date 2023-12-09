@@ -7,6 +7,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
     &:hover img{
         filter: grayscale(0%);
     }
@@ -33,7 +34,14 @@
     right: 2%;
     top: 3%;
     background-color: #14B8A6;
-    padding: 5px 8px;
+    padding: 8px 8px;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s linear;
+    &:hover {
+      background-color: #119485 !important;
+    }
   }
 }

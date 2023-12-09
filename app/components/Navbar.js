@@ -33,7 +33,7 @@ function Navbar() {
                         </svg>
 
                     </a>
-                    <ul className="flex items-center gap-5">
+                    <ul className=" hidden md:flex items-center gap-5">
                         <li><a className="hover:text-teal-500 transition-colors" href="#woare">¿Quienes somos?</a></li>
                         <li><a className="hover:text-teal-500 transition-colors" href="#events">Eventos</a></li>
                         <li><a className="hover:text-teal-500 transition-colors" href="#contact">Contáctanos</a></li>
