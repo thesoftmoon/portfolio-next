@@ -9,7 +9,28 @@
   .txt {
     position: absolute;
     bottom: 30%;
-    left: 30px;
+    left: 90px;
     padding: 10px;
   }
 }
+
+/* Swiper Override */
+
+.swiper-button-next:after {
+  color:#fff;
+}
+
+.swiper-button-prev.swiper-button-disabled {
+  color: #fff;
+}
+
+.swiper-button-prev:after {
+  color: #fff;
+}
+
+.swiper-pagination-bullet-active{
+  background-color: #fff!important;
+}
+
+/* Swiper Override */
+
