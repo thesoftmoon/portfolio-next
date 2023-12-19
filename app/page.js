@@ -4,6 +4,11 @@ import HeroSection from "./components/HeroSection"
 import Events from "./components/Events"
 import Contact from "./components/Contact"
 
+export const metadata = {
+  title: 'Next Js Portofolio',
+  description: 'Test',
+}
+
 export default function Home() {
   return (
     <div>
