@@ -7,7 +7,7 @@ function AdminSections() {
         <div className='container mx-auto'>
             <div className="flex flex-wrap justify-center h-screen">
 
-                <Link href={`/admin/hero-header`} className='selector-container'>
+                <Link href={`/admin/hero-headers`} className='selector-container'>
                     <div className="icon">
                         <span className='material-symbols-outlined'>360</span>
                     </div>

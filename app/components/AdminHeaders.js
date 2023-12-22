@@ -8,10 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import editData from '@/firebase/firestore/editData';
 import addImage from '@/firebase/firestore/addImage';
 import addData from '@/firebase/firestore/addData';
-import deleteData from '@/firebase/firestore/DeleteData';
-import Swal from 'sweetalert2';
 
-function AdminEvents() {
+function AdminHeaders() {
     const [eventsData, setEventsData] = useState([]);
     const [error, setError] = useState(null);
 
@@ -46,7 +44,7 @@ function AdminEvents() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const { result, error } = await getCollectionData('events');
+            const { result, error } = await getCollectionData('hero_headers');
             if (error) {
                 setError(error)
             }
@@ -71,7 +69,7 @@ function AdminEvents() {
 
         if (file) {
             try {
-                const { result, error } = await addImage('events', file)
+                const { result, error } = await addImage('hero_headers', file)
                 if (error) {
                     console.log('error uploading the image: ' + error)
                 } else {
@@ -89,7 +87,7 @@ function AdminEvents() {
             description: description,
         }
 
-        const { result, error } = await addData('events', data)
+        const { result, error } = await addData('hero_headers', data)
 
         if (error) {
             console.log('Error:' + error)
@@ -102,37 +100,6 @@ function AdminEvents() {
         }
     }
 
-    const handleDelete = async (id) => {
-
-        const confirmResult = await Swal.fire({
-            title: '¿Estás seguro?',
-            text: 'Esta acción no se puede deshacer.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Sí, eliminarlo!'
-        });
-        if (confirmResult.isConfirmed) {
-            const { result, error } = await deleteData('events', id);
-            if (error) {
-                console.log(error + ' ID: ' + id);
-            }
-            else {
-                console.log(result);
-                setUpdated(true);
-                Swal.fire({
-                    title: 'Eliminado!',
-                    text: 'Tu registro ha sido eliminado.',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            }
-        }
-
-    }
-
     const handleUpdate = async (e) => {
         e.preventDefault();
         const notification = toast.loading("Subiendo datos...")
@@ -141,7 +108,7 @@ function AdminEvents() {
 
         if (file) {
             try {
-                const { result, error } = await addImage('events', file)
+                const { result, error } = await addImage('hero_headers', file)
                 if (error) {
                     console.log('error uploading the image: ' + error)
                 } else {
@@ -160,7 +127,7 @@ function AdminEvents() {
             ...(description && { description }),
         };
         console.log('New Data:', newData)
-        const { result, error } = await editData('events', `${modalData.id}`, newData);
+        const { result, error } = await editData('hero_headers', `${modalData.id}`, newData);
         if (error) {
             console.error('Error al actualizar datos:', error);
         }
@@ -177,9 +144,9 @@ function AdminEvents() {
 
     };
     return (
-        <div className='min-h-screen bg-zinc-700 pt-16 pb-5'>
+        <div className='h-screen bg-zinc-700 pt-16'>
             <div className='title-container'>
-                <h1 className='title text-white'>Eventos</h1>
+                <h1 className='title text-white'>Header Banners</h1>
                 <div>
                     <button className='primary-btn' onClick={() => openAddModal()}>
                         <span className="material-symbols-outlined me-2">
@@ -264,14 +231,10 @@ function AdminEvents() {
                         </div>
 
                         <div>
+                            {/* <Link className='edit-btn' href={`/admin/events/edit-event/${event.id}`}>Editar Evento</Link> */}
                             <button className='edit-btn' onClick={() => openEditModal(event)}>
                                 <span className="material-symbols-outlined">
                                     edit
-                                </span>
-                            </button>
-                            <button className='delete-btn' onClick={() => handleDelete(event.id)}>
-                                <span className="material-symbols-outlined">
-                                    delete
                                 </span>
                             </button>
                         </div>
@@ -354,4 +317,4 @@ function AdminEvents() {
     )
 }
 
-export default AdminEvents
+export default AdminHeaders

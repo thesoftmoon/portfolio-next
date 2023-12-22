@@ -44,4 +44,20 @@
       background-color: #119485 !important;
     }
   }
+
+  .delete-btn {
+    position: absolute;
+    right:11%;
+    top: 3%;
+    background-color: #e97979;
+    padding: 8px 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s linear;
+    &:hover {
+      background-color: #c05a5a !important;
+    }
+  }
 }
