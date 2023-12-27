@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import editData from '@/firebase/firestore/editData';
 import addImage from '@/firebase/firestore/addImage';
 import addData from '@/firebase/firestore/addData';
-import deleteData from '@/firebase/firestore/DeleteData';
+import deleteData from '@/firebase/firestore/deleteData';
 import Swal from 'sweetalert2';
 
 function AdminEvents() {

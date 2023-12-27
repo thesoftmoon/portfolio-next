@@ -8,6 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import editData from '@/firebase/firestore/editData';
 import addImage from '@/firebase/firestore/addImage';
 import addData from '@/firebase/firestore/addData';
+import deleteData from '@/firebase/firestore/deleteData';
+import Swal from 'sweetalert2';
 
 function AdminHeaders() {
     const [eventsData, setEventsData] = useState([]);
@@ -143,6 +145,37 @@ function AdminHeaders() {
         setUpdated(true);
 
     };
+
+    const handleDelete = async (id) => {
+
+        const confirmResult = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción no se puede deshacer.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminarlo!'
+        });
+        if (confirmResult.isConfirmed) {
+            const { result, error } = await deleteData('hero_headers', id);
+            if (error) {
+                console.log(error + ' ID: ' + id);
+            }
+            else {
+                console.log(result);
+                setUpdated(true);
+                Swal.fire({
+                    title: 'Eliminado!',
+                    text: 'Tu registro ha sido eliminado.',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
+
+    }
     return (
         <div className='h-screen bg-zinc-700 pt-16'>
             <div className='title-container'>
@@ -230,11 +263,16 @@ function AdminHeaders() {
                             <p>{event.description}</p>
                         </div>
 
+                        {/* <Link className='edit-btn' href={`/admin/events/edit-event/${event.id}`}>Editar Evento</Link> */}
                         <div>
-                            {/* <Link className='edit-btn' href={`/admin/events/edit-event/${event.id}`}>Editar Evento</Link> */}
                             <button className='edit-btn' onClick={() => openEditModal(event)}>
                                 <span className="material-symbols-outlined">
                                     edit
+                                </span>
+                            </button>
+                            <button className='delete-btn' onClick={() => handleDelete(event.id)}>
+                                <span className="material-symbols-outlined">
+                                    delete
                                 </span>
                             </button>
                         </div>
