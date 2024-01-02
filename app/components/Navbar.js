@@ -39,7 +39,7 @@ function Navbar() {
         <div className={navBgColor ? "navbar-pc navbar-background" : "navbar-pc"}>
             <div className="container">
                 <div>
-                    <Link href="#" className="logo">
+                    <Link href="/" className="logo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="134" height="24" viewBox="0 0 134 24" fill="none">
                             <path d="M132.897 22.36C132.001 23.256 130.593 23.256 129.729 22.36C128.865 21.496 128.865 20.088 129.729 19.224C130.593 18.328 132.001 18.328 132.897 19.224C133.761 20.088 133.761 21.496 132.897 22.36Z" fill="#55B5A6" />
                             <path d="M118.846 6.68005C123.55 6.68005 127.39 10.4241 127.39 15.0641C127.39 19.7041 123.55 23.4481 118.846 23.4481C114.11 23.4481 110.302 19.7041 110.302 15.0641C110.302 10.4241 114.11 6.68005 118.846 6.68005ZM118.846 23.0001C120.798 23.0001 122.398 19.4481 122.398 15.0641C122.398 10.6801 120.798 7.16005 118.846 7.16005C116.862 7.16005 115.294 10.6801 115.294 15.0641C115.294 19.4481 116.862 23.0001 118.846 23.0001Z" fill="white" />
@@ -76,16 +76,16 @@ function Navbar() {
                         </svg>
                     </button>
                     <div ref={openMenu} className='links-mo'>
-                        <Link className='navbar-mo-btn' href="#"><h2>Quienes somos</h2></Link>
-                        <Link className='navbar-mo-btn' href="#"><h2>Eventos</h2></Link>
-                        <Link className='navbar-mo-btn' href="#"><h2>Contacto</h2></Link>
+                        <Link className='navbar-mo-btn' href="/#wo-are"><h2>Quienes somos</h2></Link>
+                        <Link className='navbar-mo-btn' href="/events"><h2>Eventos</h2></Link>
+                        <Link className='navbar-mo-btn' href="/#contact"><h2>Contacto</h2></Link>
                     </div>
                 </div>
 
                 <div className="navbar-links-pc hidden md:flex">
-                    <Link className='navbar-btn' href="#">Quienes somos</Link>
-                    <Link className='navbar-btn' href="#">Eventos</Link>
-                    <Link className='navbar-btn' href="#">Contacto</Link>
+                    <Link className='navbar-btn' href="/#wo-are">Quienes somos</Link>
+                    <Link className='navbar-btn' href="/events">Eventos</Link>
+                    <Link className='navbar-btn' href="/#contact">Contacto</Link>
                 </div>
             </div>
         </div>

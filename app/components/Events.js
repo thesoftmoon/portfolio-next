@@ -27,7 +27,7 @@ function Events() {
 
     return (
         <div id='events'>
-            <div className='px-5 bg-zinc-700'>
+            <div className='px-5 bg-zinc-700 py-10'>
                 <h1 className='title text-white'>Eventos</h1>
             </div>
 

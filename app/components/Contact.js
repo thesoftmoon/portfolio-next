@@ -2,9 +2,11 @@ import React from 'react'
 
 function Contact() {
     return (
-        <div>
-            <div className='px-5 bg-zinc-700 pb-20' id='contact'>
-                <h1 className='title text-white'>Contacto</h1>
+        <div id='contact'>
+            <div className='px-5 bg-zinc-700 pb-20'>
+                <div className='px-5 bg-zinc-700 py-10'>
+                    <h1 className='title text-white'>Contacto</h1>
+                </div>
                 <div className='info-container'>
                     <div className="info-item">
                         <div className="icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">

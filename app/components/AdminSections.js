@@ -33,7 +33,7 @@ function AdminSections() {
                     </div>
                 </Link>
 
-                <Link href={`/admin`} className='selector-container'>
+                <Link href={`/admin/team`} className='selector-container'>
                     <div className="icon">
                         <span className='material-symbols-outlined'>360</span>
                     </div>

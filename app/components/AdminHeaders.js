@@ -18,6 +18,8 @@ function AdminHeaders() {
     const [modalData, setModalData] = useState(false);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
+    const [ctaText, setCtaText] = useState('');
+    const [ctaUrl, setCtaUrl] = useState('');
     const [file, setFile] = useState(null);
     const [updated, setUpdated] = useState(false);
     const [modalStatus, setModalStatus] = useState(false)
@@ -34,6 +36,8 @@ function AdminHeaders() {
         setModalData(null);
         setName('');
         setDescription('');
+        setCtaText('');
+        setCtaUrl('');
         setFile(null);
     }
 
@@ -41,6 +45,8 @@ function AdminHeaders() {
         setModalStatus(false);
         setName('');
         setDescription('');
+        setCtaText('');
+        setCtaUrl('');
         setFile(null);
     }
 
@@ -66,7 +72,6 @@ function AdminHeaders() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const notification = toast.loading("Subiendo datos...")
-        // Better to store in local variable than state...
         let imageUrl = '';
 
         if (file) {
@@ -87,6 +92,8 @@ function AdminHeaders() {
             name: name,
             image: imageUrl,
             description: description,
+            ctaText: ctaText,
+            ctaUrl: ctaUrl
         }
 
         const { result, error } = await addData('hero_headers', data)
@@ -127,6 +134,8 @@ function AdminHeaders() {
             ...(name && { name }),
             ...(imageUrl && { image: imageUrl }),
             ...(description && { description }),
+            ...(ctaText && { ctaText }),
+            ...(ctaUrl && { ctaUrl })
         };
         console.log('New Data:', newData)
         const { result, error } = await editData('hero_headers', `${modalData.id}`, newData);
@@ -141,6 +150,8 @@ function AdminHeaders() {
         }
         setName('');
         setDescription('');
+        setCtaUrl('');
+        setCtaText('');
         setFile(null);
         setUpdated(true);
 
@@ -197,7 +208,7 @@ function AdminHeaders() {
                     <main className="flex flex-col items-center">
                         <div className='text-center mb-2'>
                             <h1 className="text-2xl font-bold text-black">
-                                Añadir evento
+                                Añadir header
                             </h1>
                         </div>
                         <form onSubmit={handleSubmit} className='w-full md:w-full'>
@@ -226,6 +237,30 @@ function AdminHeaders() {
                                     onChange={(e) => setDescription(e.target.value)}></textarea>
                             </div>
 
+                            <div className="mb-2">
+                                <label htmlFor="name" className='block text-sm text-gray-700 font-bold mb-1'>
+                                    Texto botón
+                                </label>
+                                <input type="text"
+                                    id='name'
+                                    className='text-black w-full text-sm px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
+                                    value={ctaText}
+                                    placeholder='Añade un nombre'
+                                    onChange={(e) => setCtaText(e.target.value)} />
+                            </div>
+
+                            <div className="mb-2">
+                                <label htmlFor="name" className='block text-sm text-gray-700 font-bold mb-1'>
+                                    Link botón
+                                </label>
+                                <input type="text"
+                                    id='name'
+                                    className='text-black w-full text-sm px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
+                                    value={ctaUrl}
+                                    placeholder='Añade un nombre'
+                                    onChange={(e) => setCtaUrl(e.target.value)} />
+                            </div>
+
                             <div className="mb-4">
                                 <label htmlFor="image" className='block text-gray-700 font-bold mb-2 text-sm'>
                                     Imagen
@@ -239,7 +274,7 @@ function AdminHeaders() {
 
                             <div className="flex justify-center">
                                 <button type='submit' className="primary-btn">
-                                    Añadir evento
+                                    Añadir header
                                 </button>
                             </div>
                         </form>
@@ -263,7 +298,6 @@ function AdminHeaders() {
                             <p>{event.description}</p>
                         </div>
 
-                        {/* <Link className='edit-btn' href={`/admin/events/edit-event/${event.id}`}>Editar Evento</Link> */}
                         <div>
                             <button className='edit-btn' onClick={() => openEditModal(event)}>
                                 <span className="material-symbols-outlined">
@@ -283,11 +317,9 @@ function AdminHeaders() {
                                 <main className="flex flex-col items-center">
                                     <div className='text-center mb-2'>
                                         <h1 className="text-2xl font-bold text-black">
-                                            Editar evento
+                                            Editar header
                                         </h1>
-                                        {/* <h2 className='text-black'>con id: {modalData.id}</h2> */}
                                     </div>
-                                    {/* <h1>aca va la form del evento : {params.eventId}</h1> */}
                                     <form onSubmit={handleUpdate} className='w-full md:w-full'>
                                         <div className="mb-2">
                                             <label htmlFor="name" className='block text-sm text-gray-700 font-bold mb-1'>
@@ -313,15 +345,31 @@ function AdminHeaders() {
                                                 placeholder={modalData ? modalData.description : 'cargando...'}
                                                 onChange={(e) => setDescription(e.target.value)}></textarea>
                                         </div>
-                                        {modalData && (
-                                            <div className='mb-2'>
-                                                <p className='block text-gray-700 font-bold mb-2 text-sm'>Imagen actual</p>
-                                                <Image className='form-actual-img' src={modalData.image} width={500}
-                                                    height={500}
-                                                    alt={modalData.name} />
+                                        <div className='flex flex-wrap justify-between mb-2'>
+                                            <div className="w-full md:w-1/2 pe-3">
+                                                <label htmlFor="ctaText" className='block text-sm text-gray-700 font-bold mb-1'>
+                                                    Texto botón
+                                                </label>
+                                                <input type="text"
+                                                    id='ctaText'
+                                                    className='text-black w-full text-sm px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
+                                                    value={ctaText}
+                                                    placeholder={modalData ? modalData.ctaText : 'cargando...'}
+                                                    onChange={(e) => setCtaText(e.target.value)} />
                                             </div>
-                                        )
-                                        }
+
+                                            <div className="w-full md:w-1/2 ps-2">
+                                                <label htmlFor="ctaText" className='block text-sm text-gray-700 font-bold mb-1'>
+                                                    Link botón
+                                                </label>
+                                                <input type="text"
+                                                    id='ctaUrl'
+                                                    className='text-black w-full text-sm px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500'
+                                                    value={ctaUrl}
+                                                    placeholder={modalData ? modalData.ctaUrl : 'cargando...'}
+                                                    onChange={(e) => setCtaUrl(e.target.value)} />
+                                            </div>
+                                        </div>
 
                                         <div className="mb-4">
                                             <label htmlFor="image" className='block text-gray-700 font-bold mb-2 text-sm'>
@@ -336,7 +384,7 @@ function AdminHeaders() {
 
                                         <div className="flex justify-center">
                                             <button type='submit' className="primary-btn">
-                                                Actualizar evento
+                                                Actualizar header
                                             </button>
                                         </div>
                                     </form>

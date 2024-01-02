@@ -4,7 +4,7 @@ import Events from '../components/Events'
 
 function page() {
   return (
-    <div>
+    <div className='bg-zinc-700 pt-20 min-h-screen'>
         <Events/>
     </div>
   )

@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useAuthContext } from '@/context/AuthContext';
 import AdminSections from '../components/AdminSections';
 
-
 function Page() {
 
   const { user } = useAuthContext();

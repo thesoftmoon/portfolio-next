@@ -52,7 +52,7 @@ function HeroBanner() {
               <div className="txt">
                 <h1 className="text-5xl font-bold text-white pb-5">{heroHeader.name}</h1>
                 <p className='block text-gray-700 font-bold mb-2 text-white pb-5'>{heroHeader.description}</p>
-                <Link className='bg-teal-500 hover:bg-teal-600 transition-colors text-white font-bold py-2 px-4 rounded-lg' href='#'>{heroHeader.name}</Link>
+                <Link className='bg-teal-500 hover:bg-teal-600 transition-colors text-white font-bold py-2 px-4 rounded-lg' href={heroHeader.ctaUrl}>{heroHeader.ctaText}</Link>
               </div>
             </div>
           </SwiperSlide>
