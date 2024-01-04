@@ -95,4 +95,20 @@ html {
   }
 }
 
+.icon-primary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #15b8a6;
+  height: 45px;
+  width: 45px;
+  border-radius: 40px;
+  color: #fff;
+  transition: background-color 0.15s linear;
+  font-weight: 600;
+  &:hover {
+    background-color: #119485 !important;
+  }
+}
+
 /* Buttons */

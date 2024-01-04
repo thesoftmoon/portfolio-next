@@ -10,17 +10,19 @@ import addImage from '@/firebase/firestore/addImage';
 import addData from '@/firebase/firestore/addData';
 import deleteData from '@/firebase/firestore/deleteData';
 import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 function AdminEvents() {
     const [eventsData, setEventsData] = useState([]);
     const [error, setError] = useState(null);
-
     const [modalData, setModalData] = useState(false);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [file, setFile] = useState(null);
     const [updated, setUpdated] = useState(false);
-    const [modalStatus, setModalStatus] = useState(false)
+    const [modalStatus, setModalStatus] = useState(false);
+
+    const router = useRouter();
 
     const openEditModal = (data) => {
         setModalData(data)
@@ -179,7 +181,16 @@ function AdminEvents() {
     return (
         <div className='min-h-screen bg-zinc-700 pt-16 pb-5'>
             <div className='title-container'>
-                <h1 className='title text-white'>Eventos</h1>
+                <div className='flex items-baseline'>
+                    <div className='me-5'>
+                        <button className='icon-primary-btn' onClick={() => router.back()}>
+                            <span className="material-symbols-outlined">
+                            undo
+                            </span>
+                        </button>
+                    </div>
+                    <h1 className='title text-white'>Eventos</h1>
+                </div>
                 <div>
                     <button className='primary-btn' onClick={() => openAddModal()}>
                         <span className="material-symbols-outlined me-2">

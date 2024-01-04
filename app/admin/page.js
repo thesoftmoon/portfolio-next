@@ -15,11 +15,11 @@ function Page() {
 
   return (
 
-    <div className='container mx-auto'>
+    <div className='mx-auto bg-zinc-700 pt-16 pb-5'>
       <div className="flex flex-wrap justify-center">
         <div className='title-admin text-center'>
-          <h1 className='text-4xl font-bold'>Seccion Admin</h1>
-          <p className='text-base font-light'>Aca puedes editar todas las secciones disponibles</p>
+          <h1 className='text-4xl font-bold text-white'>Seccion Admin</h1>
+          <p className='text-base font-light text-white'>Aca puedes editar todas las secciones disponibles</p>
         </div>
         <AdminSections />
       </div>

@@ -9,7 +9,7 @@ function AdminSections() {
 
                 <Link href={`/admin/hero-headers`} className='selector-container'>
                     <div className="icon">
-                        <span className='material-symbols-outlined'>360</span>
+                        <span className='material-symbols-outlined'>photo_library</span>
                     </div>
                     <div className="txt">
                         <h2 className='text-2xl font-bold'>Header Banner</h2>
@@ -22,7 +22,7 @@ function AdminSections() {
 
                 <Link href={`/admin`} className='selector-container'>
                     <div className="icon">
-                        <span className='material-symbols-outlined'>360</span>
+                        <span className='material-symbols-outlined'>feed</span>
                     </div>
                     <div className="txt">
                         <h2 className='text-2xl font-bold'>Servicios</h2>
@@ -35,7 +35,7 @@ function AdminSections() {
 
                 <Link href={`/admin/team`} className='selector-container'>
                     <div className="icon">
-                        <span className='material-symbols-outlined'>360</span>
+                        <span className='material-symbols-outlined'>diversity_3</span>
                     </div>
                     <div className="txt">
                         <h2 className='text-2xl font-bold'>Equipo</h2>
@@ -47,7 +47,7 @@ function AdminSections() {
                 </Link>
                 <Link href={`/admin/events`} className='selector-container'>
                     <div className="icon">
-                        <span className='material-symbols-outlined'>360</span>
+                        <span className='material-symbols-outlined'>theater_comedy</span>
                     </div>
                     <div className="txt">
                         <h2 className='text-2xl font-bold'>Eventos</h2>
@@ -59,7 +59,7 @@ function AdminSections() {
                 </Link>
                 <Link href={`/admin`} className='selector-container'>
                     <div className="icon">
-                        <span className='material-symbols-outlined'>360</span>
+                        <span className='material-symbols-outlined'>alternate_email</span>
                     </div>
                     <div className="txt">
                         <h2 className='text-2xl font-bold'>Contacto y RRSS</h2>
