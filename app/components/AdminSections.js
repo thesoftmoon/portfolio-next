@@ -20,7 +20,7 @@ function AdminSections() {
                     </div>
                 </Link>
 
-                <Link href={`/admin`} className='selector-container'>
+                <Link href={`/admin/services`} className='selector-container'>
                     <div className="icon">
                         <span className='material-symbols-outlined'>feed</span>
                     </div>
@@ -57,7 +57,7 @@ function AdminSections() {
                         <span className='material-symbols-outlined'>arrow_forward_ios</span>
                     </div>
                 </Link>
-                <Link href={`/admin`} className='selector-container'>
+                <Link href={`/admin/contact`} className='selector-container'>
                     <div className="icon">
                         <span className='material-symbols-outlined'>alternate_email</span>
                     </div>

@@ -196,7 +196,7 @@ function AdminTeam() {
 
     }
     return (
-        <div className='min-h-screen bg-zinc-700 pt-16 pb-5'>
+        <div className='min-h-screen bg-zinc-700 pt-10 pb-5'>
             <div className='title-container'>
             <div className='flex items-baseline'>
                     <div className='me-5'>

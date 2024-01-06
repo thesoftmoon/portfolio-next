@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContextProvider } from '@/context/AuthContext';
 import 'material-symbols';
+import { useRouter } from 'next/navigation'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,13 +18,22 @@ const inter = Inter({ subsets: ['latin'] })
 } */
 
 export default function RootLayout({ children }) {
+
+  const router = useRouter();
+
+  const isMyRoute = router.pathname === '/admin';
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <AuthContextProvider>
-          <Navbar />
+          {isMyRoute &&
+            <Navbar />
+          }
           {children}
-          <Footer />
+          {isMyRoute &&
+            <Footer />
+          }
         </AuthContextProvider>
       </body>
     </html>
