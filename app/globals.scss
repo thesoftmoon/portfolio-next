@@ -21,11 +21,15 @@ html {
 
 .service-container {
   margin: 20px 40px;
-}
-.service-text {
-  padding: 20px 30px;
-  border: 1px solid black;
-  border-radius: 20px;
+  .service-text {
+    padding: 20px 30px;
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+  .icon-img {
+    width: 85px;
+    height: 100%;
+  }
 }
 
 .title {
@@ -34,7 +38,7 @@ html {
 }
 
 .title-container {
-  background-color: #3F3F45;
+  background-color: #3f3f45;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -108,6 +112,44 @@ html {
   font-weight: 600;
   &:hover {
     background-color: #119485 !important;
+  }
+}
+
+.btn-container {
+  position: absolute;
+  display: flex;
+  right: 0;
+  top: 0;
+  margin: 10px;
+}
+
+.edit-btn {
+  margin: 5px;
+  background-color: #14b8a6;
+  padding: 8px 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s linear;
+  color: #fff;
+  &:hover {
+    background-color: #119485 !important;
+  }
+}
+
+.delete-btn {
+  margin: 5px;
+  background-color: #e97979;
+  padding: 8px 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s linear;
+  color: #fff;
+  &:hover {
+    background-color: #c05a5a !important;
   }
 }
 
